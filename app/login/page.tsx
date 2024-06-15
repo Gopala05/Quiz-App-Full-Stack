@@ -1,7 +1,7 @@
 "use client";
 import React from "react";
 import Head from "next/head";
-import {} from 'react-icons/fa'
+import {FaGoogle, FaLinkedinIn, FaGithub} from 'react-icons/fa'
 
 const page = () => {
   return (
