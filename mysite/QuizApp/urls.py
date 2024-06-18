@@ -1,6 +1,6 @@
 from django.urls import path
-from . import views 
+from .views import *
 
 urlpatterns = [
-    path('Quizapp/', views.QuizAppUserCreate.as_view(), name = 'quizapp-view-create')
+    path('login/', login.as_view(), name = 'login')
 ]
