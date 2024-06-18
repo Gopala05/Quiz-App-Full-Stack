@@ -1,2 +1,11 @@
 /node_modules
+
 /.next
+
+/.env
+
+/mysite/mysite/__pycache__/
+
+/mysite/QuizApp/__pycache__/
+
+/mysite/QuizApp/migrations/
