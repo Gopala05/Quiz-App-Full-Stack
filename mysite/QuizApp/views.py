@@ -6,19 +6,10 @@ from rest_framework.response import Response
 from rest_framework import status
 
 
-class login(APIView):
-    
-    def get(request):
-        
-        pass
-
-
+class Register(APIView):
 
     def post(self, request):
-        data = request.data
-        print(data)
-        print(data['username'])
-        
+
         username = data.get('username')
         password = data.get('password')
         
@@ -39,6 +30,3 @@ class login(APIView):
                 return Response({"message": "User Registered Successfully"}, status=status.HTTP_201_CREATED)
             else:
                 return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
-                
-        
-        
