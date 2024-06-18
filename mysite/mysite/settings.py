@@ -11,9 +11,16 @@ https://docs.djangoproject.com/en/4.2/ref/settings/
 """
 
 from pathlib import Path
+from dotenv import load_dotenv
+import os 
 
-# Build paths inside the project like this: BASE_DIR / 'subdir'.
-BASE_DIR = Path(__file__).resolve().parent.parent
+BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
+
+# Define the path to the .env file
+DOTENV_PATH = os.path.join(BASE_DIR, '..', '.env')
+
+# Load environment variables from the .env file
+load_dotenv(DOTENV_PATH)
 
 
 # Quick-start development settings - unsuitable for production
@@ -75,15 +82,25 @@ WSGI_APPLICATION = 'mysite.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/4.2/ref/settings/#databases
 
+print(
+    {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': os.environ.get('POSTGRESQL_NAME'),
+        'USER': os.environ.get('POSTGRESQL_USER'),
+        'PASSWORD': os.environ.get('POSTGRESQL_PASSWORD'),
+        'HOST': os.environ.get('POSTGRESQL_HOST'),
+        'PORT': os.environ.get('POSTGRESQL_PORT')
+    }
+)
+
 DATABASES = {
     'default': {
-
         'ENGINE': 'django.db.backends.postgresql',
-        'NAME': 'dt',
-        'USER': 'postgres',
-        'PASSWORD': 'student',
-        'HOST': 'localhost',
-        'PORT': '5432',
+        'NAME': os.environ.get('POSTGRESQL_NAME'),
+        'USER': os.environ.get('POSTGRESQL_USER'),
+        'PASSWORD': os.environ.get('POSTGRESQL_PASSWORD'),
+        'HOST': os.environ.get('POSTGRESQL_HOST'),
+        'PORT': os.environ.get('POSTGRESQL_PORT')
     }
 }
 
