@@ -4,23 +4,24 @@ from .serializer import *
 from .models import *
 from rest_framework.response import Response
 from rest_framework import status
+import time
 
-
-class Register(APIView):
+class Sign_Up(APIView):
 
     def post(self, request):
 
-        username = data.get('username')
-        password = data.get('password')
+        user = data.get('username')
+        pawd = data.get('password')
+        data = data.get()
         
-        if not username:
+        if not user:
             return Response({'message': "Username is required !"}, status=status.HTTP_400_BAD_REQUEST)
         
-        if not password:
+        if not pawd:
             return Response({'message': "Password is required !"}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
-            UserDetails.objects.get(username=username)
+            UserDetails.objects.get(username=user)
             return Response({'message': "User already exists"}, status=status.HTTP_208_ALREADY_REPORTED)
         except UserDetails.DoesNotExist:
             serialized = UserSerializer(data=data)
@@ -30,3 +31,16 @@ class Register(APIView):
                 return Response({"message": "User Registered Successfully"}, status=status.HTTP_201_CREATED)
             else:
                 return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
+            
+def StartTimer(request):
+
+    time = int(input("Enter the time in seconds: "))
+
+    for x in range(time, 0, -1):
+        seconds = x % 60
+        minutes = int(x/60) % 60
+        hours = int(x/3600)
+        printf(f'{hours:02}:{minutes:02}:{seconds:02}')
+        time.sleep(1)
+
+    print("TIME'S UPP!!!!!")

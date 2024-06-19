@@ -16,6 +16,7 @@ class MakeQuiz(models.Model):
     no_of_choices = models.PositiveIntegerField(validators=[MinValueValidator(2)]) 
     question_number = models.PositiveIntegerField(primary_key=True, validators=[MinValueValidator(1)])
     question = models.CharField(max_length=100, unique=True, blank=False, null=False)
+    timer_seconds = models.IntegerField(null=False, blank=False, default=10)
 
     def __str__(self):
         return self.title

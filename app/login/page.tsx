@@ -52,9 +52,9 @@ const page = () => {
                 <div className="bg-gray-100 w-64 p-2 flex items-center mb-3 rounded">
                   <FaRegEnvelope className="text-gray-400 m-2 pr-600 flex-none " />
                   <input
-                    type="email"
-                    name="email"
-                    placeholder="Email"
+                    type="text"
+                    name="username"
+                    placeholder="Username"
                     className="bg-gray-100 outline-none text-sm text-black flex-1"
                   />
                 </div>
