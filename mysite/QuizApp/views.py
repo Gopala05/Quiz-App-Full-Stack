@@ -78,3 +78,39 @@ def start_timer(request, quiz_id):
     print("TIME'S UP!!!!!")
 
     return JsonResponse({'message': "Timer completed"})
+
+def CreateQuiz(request):
+    if request.method == 'POST':
+        data = request.data 
+        
+        # Extract data from request
+        title = data.get('title')
+        no_of_questions = data.get('no_of_questions')
+        marks_per_question = data.get('marks_per_question')
+        no_of_choices = data.get('no_of_choices')
+        question_number = data.get('question_number')
+        question = data.get('question')
+        timer_seconds = data.get('timer_seconds')
+        option = data.get('option')  # Assuming this is the correct option for MCQs
+        
+        # Create MakeQuiz object
+        quiz = MakeQuiz.objects.create(
+            title=title,
+            no_of_questions=no_of_questions,
+            marks_per_question=marks_per_question,
+            no_of_choices=no_of_choices,
+            question_number=question_number,
+            question=question,
+            timer_seconds=timer_seconds,
+            option=option
+        )
+        
+        # Save the quiz object
+        quiz.save()
+        
+        # Return success response
+        return Response({"message": "Quiz created successfully"}, status=status.HTTP_201_CREATED)
+    
+    # Handle GET request if needed
+    return Response({"message": "Please use POST method to create a quiz"}, status=status.HTTP_400_BAD_REQUEST)
+
