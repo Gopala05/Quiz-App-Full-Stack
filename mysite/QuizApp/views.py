@@ -1,4 +1,5 @@
-from django.shortcuts import render
+from django.shortcuts import render, get_object_or_404
+from django.http import JsonResponse
 from rest_framework.views import APIView
 from .serializer import *
 from .models import *
@@ -10,15 +11,18 @@ class Sign_Up(APIView):
 
     def post(self, request):
 
+        data = request.data
         user = data.get('username')
         pawd = data.get('password')
-        data = data.get()
         
         if not user:
             return Response({'message': "Username is required !"}, status=status.HTTP_400_BAD_REQUEST)
         
         if not pawd:
             return Response({'message': "Password is required !"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        if not data.get('name'):
+            return Response({'message': "Name is required !"}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
             UserDetails.objects.get(username=user)
@@ -32,15 +36,45 @@ class Sign_Up(APIView):
             else:
                 return Response(serialized.errors, status=status.HTTP_400_BAD_REQUEST)
             
-def StartTimer(request):
 
-    time = int(input("Enter the time in seconds: "))
+class SignIn(APIView):
 
-    for x in range(time, 0, -1):
+    def post(self, request):
+
+        data = request.data
+        user = data.get('username')
+        pawd = data.get('password')
+        
+        if not username:
+            return Response({'message': "Username is required!"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        if not password:
+            return Response({'message': "Password is required!"}, status=status.HTTP_400_BAD_REQUEST)
+        
+        try:
+            user = UserDetails.objects.get(username=user, password=pawd)
+            if user:
+                return Response({'message': "Sign in successful!"}, status=status.HTTP_200_OK)
+            else:
+                return Response({'message': "Invalid credentials!"}, status=status.HTTP_401_UNAUTHORIZED)
+        
+        except UserDetails.DoesNotExist:
+            return Response({'message': "Invalid credentials!"}, status=status.HTTP_401_UNAUTHORIZED)
+
+            
+def start_timer(request, quiz_id):
+
+    quiz = get_object_or_404(MakeQuiz, pk=quiz_id)
+    
+    timer_seconds = quiz.timer_seconds
+
+    for x in range(timer_seconds, 0, -1):
         seconds = x % 60
-        minutes = int(x/60) % 60
-        hours = int(x/3600)
-        printf(f'{hours:02}:{minutes:02}:{seconds:02}')
+        minutes = int(x / 60) % 60
+        hours = int(x / 3600)
+        print(f'{hours:02}:{minutes:02}:{seconds:02}')
         time.sleep(1)
 
-    print("TIME'S UPP!!!!!")
+    print("TIME'S UP!!!!!")
+
+    return JsonResponse({'message': "Timer completed"})
