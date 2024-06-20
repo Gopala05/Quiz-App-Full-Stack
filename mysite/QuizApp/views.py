@@ -114,3 +114,45 @@ def CreateQuiz(request):
     # Handle GET request if needed
     return Response({"message": "Please use POST method to create a quiz"}, status=status.HTTP_400_BAD_REQUEST)
 
+def TakeQuiz(request):
+    if request.method == 'POST':
+        data = request.data  # Assuming you're using Django REST Framework for API views
+        
+        # Extract data from request
+        quiz_id = data.get('quiz_id')
+        question_number = data.get('question_number')
+        selected_choice = data.get('selected_choice')
+        
+        try:
+            # Get the quiz object
+            quiz = MakeQuiz.objects.get(id=quiz_id)
+            
+            # Validate the question number exists in the quiz
+            if question_number > quiz.no_of_questions:
+                return Response({"message": "Invalid question number"}, status=status.HTTP_400_BAD_REQUEST)
+            
+            # Calculate marks for the selected question
+            correct_option = quiz.option  # Assuming correct answer is stored in option field
+            marks_per_question = quiz.marks_per_question
+            marks_alloted = selected_choice == correct_option
+            
+            # Create TakeQuiz object
+            take_quiz = TakeQuiz.objects.create(
+                quiz=quiz,
+                question_number=question_number,
+                selected_choice=selected_choice,
+                marks_per_question=marks_per_question,
+                marks_alloted=marks_alloted
+            )
+            
+            # Save the take quiz object
+            take_quiz.save()
+            
+            # Return success response
+            return Response({"message": "Quiz taken successfully"}, status=status.HTTP_201_CREATED)
+        
+        except MakeQuiz.DoesNotExist:
+            return Response({"message": "Quiz does not exist"}, status=status.HTTP_404_NOT_FOUND)
+    
+    # Handle GET request if needed
+    return Response({"message": "Please use POST method to take a quiz"}, status=status.HTTP_400_BAD_REQUEST)
