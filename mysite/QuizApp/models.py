@@ -4,7 +4,7 @@ from django.core.validators import MinValueValidator
 class UserDetails(models.Model):
     username = models.CharField(primary_key=True, max_length=20)
     password = models.CharField(max_length=10, null=False, blank=False)
-    name = models.CharField(max_length=10, null=False, blank=False)
+    name = models.CharField(default='user1', max_length=10, null=False, blank=False)
 
     def __str__(self):
         return self.username

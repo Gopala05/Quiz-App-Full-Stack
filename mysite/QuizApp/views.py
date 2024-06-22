@@ -61,7 +61,7 @@ class SignIn(APIView):
         except UserDetails.DoesNotExist:
             return Response({'message': "Invalid credentials!"}, status=status.HTTP_401_UNAUTHORIZED)
 
-class ForTimer:   
+class ForTimer(APIView):   
 
     def start_timer(request, quiz_id):
 
@@ -80,20 +80,20 @@ class ForTimer:
 
         return JsonResponse({'message': "Timer completed"})
 
-class CreateQuiz:
+class CreateQuiz(APIView):
 
-    def CreateQuiz(request):
-        if request.method == 'POST':
-            data = request.data 
+    def post(self,request):
+        
+        data = request.data 
         
         print("Title, no of questions, marks for each, no of choices , question number, question, time limit and right answer respectively")
         title = data.get('title')
+        timer_seconds = data.get('timer_seconds')
         no_of_questions = data.get('no_of_questions')
         marks_per_question = data.get('marks_per_question')
         no_of_choices = data.get('no_of_choices')
         question_number = data.get('question_number')
         question = data.get('question')
-        timer_seconds = data.get('timer_seconds')
         right_option = data.get('correct_option')  
         
         # Create MakeQuiz object
@@ -108,14 +108,13 @@ class CreateQuiz:
         correct_option= right_option
         )
         
-        # Save the quiz object
         quiz.save()
         
         # Return success response
         return Response({"message": "Quiz created successfully"}, status=status.HTTP_201_CREATED)
-class QuizTime:
+class QuizTime(APIView):
 
-    def ChallengeQuiz(request):
+    def post(self, request):
         if request.method == 'POST':
             data = request.data  
         
