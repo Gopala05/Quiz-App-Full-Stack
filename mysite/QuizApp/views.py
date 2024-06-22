@@ -45,15 +45,15 @@ class SignIn(APIView):
         user = data.get('username')
         pawd = data.get('password')
         
-        if not username:
+        if not user:
             return Response({'message': "Username is required!"}, status=status.HTTP_400_BAD_REQUEST)
         
-        if not password:
+        if not pawd:
             return Response({'message': "Password is required!"}, status=status.HTTP_400_BAD_REQUEST)
         
         try:
-            user = UserDetails.objects.get(username=user, password=pawd)
-            if user:
+            userExists = UserDetails.objects.get(username=user, password=pawd)
+            if userExists:
                 return Response({'message': "Sign in successful!"}, status=status.HTTP_200_OK)
             else:
                 return Response({'message': "Invalid credentials!"}, status=status.HTTP_401_UNAUTHORIZED)
@@ -61,29 +61,32 @@ class SignIn(APIView):
         except UserDetails.DoesNotExist:
             return Response({'message': "Invalid credentials!"}, status=status.HTTP_401_UNAUTHORIZED)
 
-            
-def start_timer(request, quiz_id):
+class ForTimer:   
 
-    quiz = get_object_or_404(MakeQuiz, pk=quiz_id)
+    def start_timer(request, quiz_id):
+
+        quiz = get_object_or_404(MakeQuiz, pk=quiz_id)
     
-    timer_seconds = quiz.timer_seconds
+        timer_seconds = quiz.timer_seconds
 
-    for x in range(timer_seconds, 0, -1):
-        seconds = x % 60
-        minutes = int(x / 60) % 60
-        hours = int(x / 3600)
-        print(f'{hours:02}:{minutes:02}:{seconds:02}')
-        time.sleep(1)
+        for x in range(timer_seconds, 0, -1):
+            seconds = x % 60
+            minutes = int(x / 60) % 60
+            hours = int(x / 3600)
+            print(f'{hours:02}:{minutes:02}:{seconds:02}')
+            time.sleep(1)
 
-    print("TIME'S UP!!!!!")
+        print("TIME'S UP!!!!!")
 
-    return JsonResponse({'message': "Timer completed"})
+        return JsonResponse({'message': "Timer completed"})
 
-def CreateQuiz(request):
-    if request.method == 'POST':
-        data = request.data 
+class CreateQuiz:
+
+    def CreateQuiz(request):
+        if request.method == 'POST':
+            data = request.data 
         
-        # Extract data from request
+        print("Title, no of questions, marks for each, no of choices , question number, question, time limit and right answer respectively")
         title = data.get('title')
         no_of_questions = data.get('no_of_questions')
         marks_per_question = data.get('marks_per_question')
@@ -91,18 +94,18 @@ def CreateQuiz(request):
         question_number = data.get('question_number')
         question = data.get('question')
         timer_seconds = data.get('timer_seconds')
-        option = data.get('option')  # Assuming this is the correct option for MCQs
+        right_option = data.get('correct_option')  
         
         # Create MakeQuiz object
         quiz = MakeQuiz.objects.create(
-            title=title,
-            no_of_questions=no_of_questions,
-            marks_per_question=marks_per_question,
-            no_of_choices=no_of_choices,
-            question_number=question_number,
-            question=question,
-            timer_seconds=timer_seconds,
-            option=option
+        title=title,
+        no_of_questions=no_of_questions,
+        marks_per_question=marks_per_question,
+        no_of_choices=no_of_choices,
+        question_number=question_number,
+        question=question,
+        timer_seconds=timer_seconds,
+        correct_option= right_option
         )
         
         # Save the quiz object
@@ -110,49 +113,19 @@ def CreateQuiz(request):
         
         # Return success response
         return Response({"message": "Quiz created successfully"}, status=status.HTTP_201_CREATED)
-    
-    # Handle GET request if needed
-    return Response({"message": "Please use POST method to create a quiz"}, status=status.HTTP_400_BAD_REQUEST)
+class QuizTime:
 
-def TakeQuiz(request):
-    if request.method == 'POST':
-        data = request.data  # Assuming you're using Django REST Framework for API views
+    def ChallengeQuiz(request):
+        if request.method == 'POST':
+            data = request.data  
         
-        # Extract data from request
         quiz_id = data.get('quiz_id')
         question_number = data.get('question_number')
         selected_choice = data.get('selected_choice')
         
-        try:
-            # Get the quiz object
-            quiz = MakeQuiz.objects.get(id=quiz_id)
-            
-            # Validate the question number exists in the quiz
-            if question_number > quiz.no_of_questions:
-                return Response({"message": "Invalid question number"}, status=status.HTTP_400_BAD_REQUEST)
-            
-            # Calculate marks for the selected question
-            correct_option = quiz.option  # Assuming correct answer is stored in option field
-            marks_per_question = quiz.marks_per_question
-            marks_alloted = selected_choice == correct_option
-            
-            # Create TakeQuiz object
-            take_quiz = TakeQuiz.objects.create(
-                quiz=quiz,
-                question_number=question_number,
-                selected_choice=selected_choice,
-                marks_per_question=marks_per_question,
-                marks_alloted=marks_alloted
-            )
-            
-            # Save the take quiz object
-            take_quiz.save()
-            
-            # Return success response
-            return Response({"message": "Quiz taken successfully"}, status=status.HTTP_201_CREATED)
-        
-        except MakeQuiz.DoesNotExist:
-            return Response({"message": "Quiz does not exist"}, status=status.HTTP_404_NOT_FOUND)
+
+        return Response({"message": "Quiz does not exist"}, status=status.HTTP_404_NOT_FOUND)
     
+
     # Handle GET request if needed
-    return Response({"message": "Please use POST method to take a quiz"}, status=status.HTTP_400_BAD_REQUEST)
+        return Response({"message": "Please use POST method to take a quiz"}, status=status.HTTP_400_BAD_REQUEST)
