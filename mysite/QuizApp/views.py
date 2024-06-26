@@ -115,12 +115,9 @@ class CreateQuiz(APIView):
 class QuizTime(APIView):
 
     def post(self, request):
-        if request.method == 'POST':
-            data = request.data  
+        data = request.data  
         
-        quiz_id = data.get('quiz_id')
-        question_number = data.get('question_number')
-        selected_choice = data.get('selected_choice')
+        
         
 
         return Response({"message": "Quiz does not exist"}, status=status.HTTP_404_NOT_FOUND)
