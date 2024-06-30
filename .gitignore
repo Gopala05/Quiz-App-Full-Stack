@@ -4,8 +4,8 @@
 
 /.env
 
-/mysite/mysite/__pycache__/
+/backend/backend/__pycache__/
 
-/mysite/QuizApp/__pycache__/
+/backend/QuizApp/__pycache__/
 
-/mysite/QuizApp/migrations/
+/backend/QuizApp/migrations/
