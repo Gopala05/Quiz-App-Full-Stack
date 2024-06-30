@@ -6,16 +6,15 @@ class UserSerializer(serializers.ModelSerializer):
         model = UserDetails
         fields = ["username", "password"]
 
-
 class MakeQuizSerializer(serializers.ModelSerializer):
     class Meta:
         model = MakeQuiz
         fields = '__all__'
 
-class TakeQuizSerializer(serializers.ModelSerializer):
-    class Meta:
-        model = TakeQuiz
-        fields = '__all__'
+# class TakeQuizSerializer(serializers.ModelSerializer):
+#     class Meta:
+#         model = TakeQuiz
+#         fields = '__all__'
         
 class UserScoreSerializer(serializers.ModelSerializer):
     class Meta:
