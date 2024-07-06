@@ -52,6 +52,7 @@ const Navbar = ({ className }: { className?: string }) => {
             <HoveredLink href="/individual">Sign Up</HoveredLink>
           </div>
         </MenuItem>
+        <MenuItem setActive={setActive} active="" item="About"></MenuItem>
       </Menu>
     </div>
   );
