@@ -89,7 +89,7 @@ const page = () => {
               Fill up some information and start your journey with us.
             </p>
             <a
-              href=""
+              href="/signUp"
               className="border-2 border-white rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-green-500"
             >
               Sign Up

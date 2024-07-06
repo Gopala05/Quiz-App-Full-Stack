@@ -73,7 +73,7 @@ const page = () => {
               Already a member?
             </p>
             <a
-              href=""
+              href="/login"
               className="border-2 border-white rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-green-500"
             >
               Sign In
