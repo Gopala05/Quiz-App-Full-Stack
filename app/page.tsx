@@ -14,6 +14,8 @@ import {
 const AuroraBackgroundDemo = () => {
   return (
     // <TracingBeam className="px-6">
+    <div>
+      <div className="h-[100vh]">
     <AuroraBackground>
       <Navbar />
       <motion.div
@@ -38,7 +40,60 @@ const AuroraBackgroundDemo = () => {
         </TextRevealCard>
       </motion.div>
     </AuroraBackground>
+    </div>
+    <div className="h-[100vh]">
+    <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
+        <div className="bg-white rounded-2xl shadow-2xl flex w-2/3 max-w-4xl">
+          <div className="w-3/5 p-5">
+            <div className="text-left font-bold text-black">
+              <span className="text-green-500">Double</span>Trouble
+            </div>
+            <div className="py-10">
+              <h2 className="text-green-500 text-3xl font-bold mb-2">About Us</h2>
+              <div className="border-2 w-10 border-green-500 inline-block mb-2"></div>
+              <p className="text-gray-400 my-3">
+                Welcome to DoubleTrouble! We are passionate about delivering the best
+                services to our clients. Our mission is to provide innovative solutions
+                and excellent customer service.
+              </p>
+              <p className="text-gray-400 my-3">
+                Our team of experts works tirelessly to ensure that we meet and exceed
+                your expectations. We believe in integrity, innovation, and excellence.
+              </p>
+            </div>
+          </div>
+          <div className="w-2/5 bg-green-500 text-white rounded-tr-2xl rounded-br-2xl py-36 px-12">
+            <h2 className="text-3xl font-bold mb-2">Contact Us</h2>
+            <div className="border-2 w-10 border-white inline-block mb-2"></div>
+            <form className="flex flex-col items-center">
+              <div className="bg-gray-100 w-64 p-2 flex items-center mb-3 rounded">
 
+                <input
+                  type="email"
+                  name="email"
+                  placeholder="Email"
+                  className="bg-gray-100 outline-none text-sm text-black flex-1"
+                />
+              </div>
+              <div className="bg-gray-100 w-64 p-2 flex items-center mb-3 rounded">
+                <textarea
+                  name="question"
+                  placeholder="Your Question"
+                  className="bg-gray-100 outline-none text-sm text-black flex-1 h-24 resize-none"
+                ></textarea>
+              </div>
+              <button
+                type="submit"
+                className="border-2 border-white rounded-full px-12 py-2 inline-block font-semibold hover:bg-white hover:text-green-500"
+              >
+                Submit
+              </button>
+            </form>
+          </div>
+        </div>
+      </main>
+    </div>
+      </div>
     // </TracingBeam>
   );
 };
