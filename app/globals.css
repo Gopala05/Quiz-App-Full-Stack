@@ -31,3 +31,7 @@ body {
     text-wrap: balance;
   }
 }
+
+.ant-dropdown-menu-item {
+  padding: 0 !important;
+}

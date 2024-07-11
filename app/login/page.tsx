@@ -9,7 +9,37 @@ import {
   FaRegUser,
 } from "react-icons/fa";
 import {MdLockOutline} from 'react-icons/md';
+import axios from "axios";
+import toast from "react-hot-toast";
+
 const page = () => {
+  const [username, setUsermame] = React.useState<string>("");
+  const [password, setPassword] = React.useState<string>("");
+
+  const handleLogin = async () => {
+    try {
+    if (username && password) {
+      const response : any = await axios.post(`${process.env.NEXT_PUBLIC_HOST_URL}/signin`, {
+        username: username,
+        password: password
+      })
+
+      if (response.status == 200) {
+        toast.success(response.data.message)
+        localStorage.setItem("user", JSON.stringify(response.data.user))
+        window.location.href = '/dashboard';
+      } else {
+        toast.error(response.data.message)
+      }
+    } else {
+      toast.error("Please provide both Username and Password")
+    }
+  } catch (error: any) {
+      toast.error(error.response?.data?.message || "Internal Server Error");
+      console.error("Error in Login: ", error);
+  }
+  }
+
   return (
     <div className="bg-white flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
@@ -56,6 +86,7 @@ const page = () => {
                     type="text"
                     name="username"
                     placeholder="Username"
+                    onChange={(e) => setUsermame(e.target.value)}
                     className="bg-gray-100 outline-none text-sm text-black flex-1"
                   />
                 </div>
@@ -65,6 +96,7 @@ const page = () => {
                     type="password"
                     name="password"
                     placeholder="Password"
+                    onChange={(e) => setPassword(e.target.value)}
                     className="bg-gray-100 outline-none text-sm text-black flex-1"
                   />
                 </div>
@@ -72,12 +104,11 @@ const page = () => {
                   <label className="flex items-center text-xs text-black"><input type="checkbox" name="remember" className= "mr-1" />Remember me</label>
                   <a href="" className="text-xs text-black">Forgot Password?</a>
                 </div>
-                <a
-              href=""
+                <button onClick={handleLogin}
               className="border-2 border-green-500 text-green-500 rounded-full px-12 py-2 inline-block font-semibold hover:bg-green-500 hover:text-white"
             >
               Sign In
-            </a>
+            </button>
               </div>
             </div>
           </div>
