@@ -4,7 +4,7 @@ from .models import *
 class UserSerializer(serializers.ModelSerializer):
     class Meta:
         model = UserDetails
-        fields = ["username", "password"]
+        fields = '__all__'
 
 class MakeQuizSerializer(serializers.ModelSerializer):
     class Meta:
