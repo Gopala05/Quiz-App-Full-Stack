@@ -1,101 +1,56 @@
 "use client";
 
-import { motion } from "framer-motion";
+import Image from "next/image";
 import React from "react";
-import AuroraBackground from "@/components/ui/background";
-import Navbar from "@/components/custom/nav";
-import {
-  TextRevealCard,
-  TextRevealCardDescription,
-  TextRevealCardTitle,
-} from "@/components/ui/text";
-// import { TracingBeam } from "@/components/ui/tracing";
+import { CardBody, CardContainer, CardItem } from "@/components/ui/3d-card";
+import Link from "next/link";
 
-const AuroraBackgroundDemo = () => {
+const Home=()=> {
   return (
-    // <TracingBeam className="px-6">
-    <div>
-      <div className="h-[100vh]">
-    <AuroraBackground>
-      <Navbar />
-      <motion.div
-        initial={{ opacity: 0.0, y: 40 }}
-        whileInView={{ opacity: 1, y: 0 }}
-        transition={{
-          delay: 0.3,
-          duration: 0.8,
-          ease: "easeInOut",
-        }}
-        className="relative flex flex-col gap-4 items-center justify-center px-4"
-      >
-        <TextRevealCard
-          text="Unlock your knowledge"
-          revealText="Answer the questions"
+    <CardContainer className="inter-var h-[100vh] ">
+      <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
+        <CardItem
+          translateZ="50"
+          className="text-4xl font-bold text-neutral-600 dark:text-white flex w-full justify-center"
         >
-          <TextRevealCardTitle>Test Your Wits</TextRevealCardTitle>
-          <TextRevealCardDescription>
-            Ready to challenge yourself? Dive into our quiz and test your
-            skills.
-          </TextRevealCardDescription>
-        </TextRevealCard>
-      </motion.div>
-    </AuroraBackground>
-    </div>
-    <div className="h-[100vh] flex items-center content-center bg-[#000000]">
-    <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
-        <div className="bg-white rounded-2xl shadow-2xl flex w-2/3 max-w-4xl">
-          <div className="w-3/5 p-5">
-            <div className="text-left font-bold text-[#FFFFFF]">
-              <span className="text-[#FFD700]">Double</span>Trouble
-            </div>
-            <div className="py-10">
-              <h2 className="text-[#FFD700] text-3xl font-bold mb-2">About Us</h2>
-              <div className="border-2 w-10 border-[#FFD700] inline-block mb-2"></div>
-              <p className="text-[#FFFFFF] my-3">
-                Welcome to DoubleTrouble! We are passionate about delivering the best
-                services to our clients. Our mission is to provide innovative solutions
-                and excellent customer service.
-              </p>
-              <p className="text-[#FFFFFF] my-3">
-                Our team of experts works tirelessly to ensure that we meet and exceed
-                your expectations. We believe in integrity, innovation, and excellence.
-              </p>
-            </div>
-          </div>
-          <div className="w-2/5 bg-[#FFD700] text-[#FFFFFF] rounded-tr-2xl rounded-br-2xl py-36 px-12">
-            <h2 className="text-3xl font-bold mb-2">Contact Us</h2>
-            <div className="border-2 w-10 border-[#FFFFFF] inline-block mb-2"></div>
-            <form className="flex flex-col items-center">
-              <div className="bg-[#FFFFFF] w-64 p-2 flex items-center mb-3 rounded">
-                <input
-                  type="email"
-                  name="email"
-                  placeholder="Email"
-                  className="bg-[#FFFFFF] outline-none text-sm text-[#000000] flex-1"
-                />
-              </div>
-              <div className="bg-[#FFFFFF] w-64 p-2 flex items-center mb-3 rounded">
-                <textarea
-                  name="question"
-                  placeholder="Your Question"
-                  className="bg-[#FFFFFF] outline-none text-sm text-[#000000] flex-1 h-24 resize-none"
-                ></textarea>
-              </div>
-              <button
-                type="submit"
-                className="border-2 border-[#FFFFFF] rounded-full px-12 py-2 inline-block font-semibold hover:bg-[#FFFFFF] hover:text-[#FFD700]"
-              >
-                Submit
-              </button>
-            </form>
-          </div>
+          WELCOME!
+        </CardItem>
+        <CardItem
+          as="p"
+          translateZ="60"
+          className="text-neutral-500 text-sm mt-6 dark:text-neutral-300 flex w-full justify-center"
+        >
+          Ready to Challenge yourself with a quiz?
+        </CardItem>
+        <CardItem translateZ="100" className="w-full ">
+          <img
+            src="./Logo.png"
+            className="object-cover rounded-xl group-hover/card:shadow-xl"
+            alt="thumbnail"
+          />
+        </CardItem>
+        <div className="flex justify-between items-center mt-20">
+          <CardItem
+            translateZ={20}
+            as={Link}
+            href="./login"
+            target="__blank"
+            className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
+          >
+            Try now →
+          </CardItem>
+          <CardItem
+            translateZ={20}
+            as="button"
+            href="./signUp"
+            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
+          >
+            Sign up
+          </CardItem>
         </div>
-      </main>
-    </div> 
-
-      </div>
-    // </TracingBeam>
+      </CardBody>
+    </CardContainer>
   );
-};
+}
 
-export default AuroraBackgroundDemo;
+export default Home;
