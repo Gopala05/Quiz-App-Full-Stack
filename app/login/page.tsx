@@ -11,6 +11,7 @@ import {
 import {MdLockOutline} from 'react-icons/md';
 import axios from "axios";
 import toast from "react-hot-toast";
+import { Input } from "antd";
 
 const page = () => {
   const [username, setUsermame] = React.useState<string>("");
@@ -44,7 +45,6 @@ const page = () => {
     <div className="bg-white flex flex-col items-center justify-center min-h-screen py-2">
       <Head>
         <title>Login</title>
-        <link rel="icon" href="/favicon.ico" />
       </Head>
 
       <main className="flex flex-col items-center justify-center w-full flex-1 px-20 text-center">
@@ -82,7 +82,7 @@ const page = () => {
               <div className="flex flex-col items-center ">
                 <div className="bg-gray-100 w-64 p-2 flex items-center mb-3 rounded">
                   <FaRegUser className="text-gray-400 m-2 pr-600 flex-none " />
-                  <input
+                  <Input
                     type="text"
                     name="username"
                     placeholder="Username"
@@ -92,7 +92,7 @@ const page = () => {
                 </div>
                 <div className="bg-gray-100 w-64 p-2 flex items-center mb-3 rounded">
                   <MdLockOutline className="text-gray-400 m-2 pr-600 flex-none mb-3" />
-                  <input
+                  <Input.Password
                     type="password"
                     name="password"
                     placeholder="Password"
