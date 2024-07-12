@@ -1,9 +1,10 @@
 "use client";
-import { useRouter } from "next/router";
+import { useRouter } from "next/navigation";
 import React from "react";
 
 const Sidebar: React.FC = () => {
   const [activePath, setActivePath] = React.useState<string>("");
+  const router = useRouter();
 
   React.useEffect(() => {
     if (typeof window !== "undefined") {
@@ -34,14 +35,16 @@ const Sidebar: React.FC = () => {
             <span>Double Trouble</span>
           </div>
           <ul className="flex flex-col gap-y-5">
-            <li>
-              <a
-                href="/dashboard"
-                onClick={() => setActivePath("/dashboard")}
+            <li
+              onClick={() => {
+                router.push("/dashboard"), setActivePath("/dashboard");
+              }}
+            >
+              <div
                 className={`${
                   activePath == "/dashboard"
-                    ? "bg-white text-black font-bold"
-                    : "bg-transparent"
+                    ? "hover:bg-white text-black font-bold hover:rounded-lg hover:text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+                    : "bg-transparente hover:bg-white hover:text-black hover:font-bold"
                 }`}
               >
                 <img
@@ -50,16 +53,18 @@ const Sidebar: React.FC = () => {
                   className="w-12"
                 />
                 Dashboard
-              </a>
+              </div>
             </li>
-            <li>
-              <a
-                href="/create"
-                onClick={() => setActivePath("/create")}
+            <li
+              onClick={() => {
+                router.push("/create"), setActivePath("/create");
+              }}
+            >
+              <div
                 className={`${
                   activePath == "/create"
-                    ? "bg-white text-black font-bold"
-                    : "bg-transparent"
+                    ? "hover:bg-white text-black font-bold hover:rounded-lg hover:text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+                    : "bg-transparente hover:bg-white hover:text-black hover:font-bold"
                 }`}
               >
                 <img
@@ -68,16 +73,18 @@ const Sidebar: React.FC = () => {
                   className="w-12"
                 />{" "}
                 Create Quiz
-              </a>
+              </div>
             </li>
-            <li>
-              <a
-                href="/start"
-                onClick={() => setActivePath("/start")}
+            <li
+              onClick={() => {
+                router.push("/start"), setActivePath("/start");
+              }}
+            >
+              <div
                 className={`${
                   activePath == "/start"
-                    ? "bg-white text-black font-bold"
-                    : "bg-transparent"
+                    ? "hover:bg-white text-black font-bold hover:rounded-lg hover:text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+                    : "bg-transparente hover:bg-white hover:text-black hover:font-bold"
                 }`}
               >
                 <img
@@ -86,21 +93,40 @@ const Sidebar: React.FC = () => {
                   className="w-12"
                 />
                 Start Quiz
-              </a>
+              </div>
             </li>
-            <li>
-              <a
-                href="/results"
-                onClick={() => setActivePath("/results")}
+            <li
+              onClick={() => {
+                router.push("/results"), setActivePath("/results");
+              }}
+            >
+              <div
                 className={`${
                   activePath == "/results"
-                    ? "bg-white text-black font-bold"
-                    : "bg-transparent"
+                    ? "hover:bg-white text-black font-bold hover:rounded-lg hover:text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+                    : "bg-transparente hover:bg-white hover:text-black hover:font-bold"
                 }`}
               >
                 <img src="./Results.png" alt="Results Icon" className="w-12" />
                 Result Records
-              </a>
+              </div>
+            </li>
+
+            <li
+              onClick={() => {
+                router.push("/lead-board"), setActivePath("/lead-board");
+              }}
+            >
+              <div
+                className={`${
+                  activePath == "/lead-board"
+                    ? "hover:bg-white text-black font-bold hover:rounded-lg hover:text-white bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500"
+                    : "bg-transparente hover:bg-white hover:text-black hover:font-bold"
+                }`}
+              >
+                <img src="./Lead_Board.png" alt="Lead Board Icon" className="w-12" />
+                Lead Board
+              </div>
             </li>
           </ul>
         </div>

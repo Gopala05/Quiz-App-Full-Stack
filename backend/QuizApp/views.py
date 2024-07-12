@@ -272,15 +272,14 @@ class LeaderboardAPI(APIView):
                 all_users_scores = UserScore.objects.filter(quiz_title=quiz_title_param).order_by('-marks_scored')
                 all_users_serializer = UserScoreSerializer(all_users_scores, many=True)
 
-                user_score = all_users_scores.filter(username__username=username_param).order_by('-marks_scored').first()
-                if not user_score:
-                    return Response({"message": f"No standings found for quiz {quiz_title_param}"}, status=status.HTTP_404_NOT_FOUND)
+                if username_param:
+                    user_score = all_users_scores.filter(username__username=username_param).order_by('-marks_scored').first()
+                    if not user_score:
+                        return Response({"message": f"No standings found for quiz {quiz_title_param}"}, status=status.HTTP_404_NOT_FOUND)
 
-                user_serializer = UserScoreSerializer(user_score)
-                return Response({
-                    "details": all_users_serializer.data,
-                    "user_standings": user_serializer.data
-                }, status=status.HTTP_200_OK)
+                    user_serializer = UserScoreSerializer(user_score)
+                    return Response({ "details": all_users_serializer.data, "user_standings": user_serializer.data }, status=status.HTTP_200_OK)
+                return Response({ "details": all_users_serializer.data }, status=status.HTTP_200_OK)
             except Exception as e:
                 return Response({"message": "An error occurred", "error": str(e)}, status=status.HTTP_500_INTERNAL_SERVER_ERROR)
 
