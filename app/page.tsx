@@ -17,19 +17,12 @@ const Home=()=> {
           <a href="#" className="hover:underline">Enterprise</a>
           <a href="#" className="hover:underline">Pricing</a>
         </nav> */}
-        <div className="space-x-4 text-white font-bold">
+        <div className="space-x-4 text-black font-bold">
           <a href="/login" className="hover:underline">Login</a>
           <a href="/signUp" className="bg-yellow-400 text-black px-4 py-2 rounded-lg hover:bg-yellow-500">Sign Up</a>
         </div>
       </header>
-    <div className="w-1/2 bg-blue-600 text-white flex flex-col justify-between relative z-10">
-      <main className="flex-grow flex flex-col items-center justify-center text-center px-8">
-        <h1 className="text-4xl font-bold mb-4">Work the way that works for you</h1>
-        <p className="text-lg mb-6">Create, Build, Collaborate and ship products very faster</p>
-        <button className="bg-yellow-400 text-black px-6 py-3 rounded-lg hover:bg-yellow-500 mb-8">Get Started</button>
-      </main>
-      
-    </div>
+    
 
     {/* Right White Section */}
     <div className="w-1/2 bg-black text-black flex items-center justify-center relative z-10">
@@ -55,26 +48,19 @@ const Home=()=> {
             alt="thumbnail"
           />
         </CardItem>
-        <div className="flex justify-between items-center mt-20">
-          <CardItem
-            translateZ={20}
-            as={Link}
-            href="./login"
-            target="__blank"
-            className="px-4 py-2 rounded-xl text-xs font-normal dark:text-white"
-          >
-            Try now →
-          </CardItem>
-          <CardItem
-            translateZ={20}
-            as="button"
-            className="px-4 py-2 rounded-xl bg-black dark:bg-white dark:text-black text-white text-xs font-bold"
-          >
-            <a href="/signUp">Sign up</a>
-          </CardItem>
-        </div>
       </CardBody>
     </CardContainer>
+    </div>
+
+    <div className="w-1/2 bg-[#06f8ec] text-black flex flex-col justify-between relative z-10">
+      <main className="flex-grow flex flex-col items-center justify-center text-center px-8">
+        <h1 className="text-6xl font-bold mb-4">Want to make a Quiz?</h1>
+        <p className="text-2xl mb-6">Let's make one together ;)</p>
+        <Link href="/login">
+        <button className=" border-none bg-yellow-400 text-[#334961] flex justify-start text-2xl font-semibold rounded-xl transition-transform duration-300 ease-in-out hover:shadow-2xl hover:shadow-yellow-600 hover:-translate-y-2 p-6">Get Started</button>
+        </Link>
+      </main>
+      
     </div>
     <div>
     <footer className="py-8 z-50 flex w-full text-white fixed ">
