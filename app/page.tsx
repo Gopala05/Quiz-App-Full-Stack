@@ -7,14 +7,40 @@ import Link from "next/link";
 
 const Home=()=> {
   return (
+    <div className="relative min-h-screen flex">
+    {/* Left Blue Section */}
+      <header className="py-6 fixed z-50 flex w-full  px-8 justify-between items-center">
+        <div className="text-2xl font-bold">Double Trouble</div>
+        {/* <nav className="space-x-4">
+          <a href="#" className="hover:underline">Product</a>
+          <a href="#" className="hover:underline">Solution</a>
+          <a href="#" className="hover:underline">Enterprise</a>
+          <a href="#" className="hover:underline">Pricing</a>
+        </nav> */}
+        <div className="space-x-4 text-white font-bold">
+          <a href="/login" className="hover:underline">Login</a>
+          <a href="/signUp" className="bg-yellow-400 text-black px-4 py-2 rounded-lg hover:bg-yellow-500">Sign Up</a>
+        </div>
+      </header>
+    <div className="w-1/2 bg-blue-600 text-white flex flex-col justify-between relative z-10">
+      <main className="flex-grow flex flex-col items-center justify-center text-center px-8">
+        <h1 className="text-4xl font-bold mb-4">Work the way that works for you</h1>
+        <p className="text-lg mb-6">Create, Build, Collaborate and ship products very faster</p>
+        <button className="bg-yellow-400 text-black px-6 py-3 rounded-lg hover:bg-yellow-500 mb-8">Get Started</button>
+      </main>
+      
+    </div>
+
+    {/* Right White Section */}
+    <div className="w-1/2 bg-black text-black flex items-center justify-center relative z-10">
     <CardContainer className="inter-var h-[100vh] ">
-      <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
-        <CardItem
-          translateZ="50"
-          className="text-4xl font-bold text-neutral-600 dark:text-white flex w-full justify-center"
+       <CardBody className="bg-gray-50 relative group/card  dark:hover:shadow-2xl dark:hover:shadow-emerald-500/[0.1] dark:bg-black dark:border-white/[0.2] border-black/[0.1] w-auto sm:w-[30rem] h-auto rounded-xl p-6 border  ">
+         <CardItem
+           translateZ="50"
+           className="text-4xl font-bold text-neutral-600 dark:text-white flex w-full justify-center"
         >
           WELCOME!
-        </CardItem>
+         </CardItem>
         <CardItem
           as="p"
           translateZ="60"
@@ -49,6 +75,15 @@ const Home=()=> {
         </div>
       </CardBody>
     </CardContainer>
+    </div>
+    <div>
+    <footer className="py-8 z-50 flex w-full text-white fixed ">
+        C Copy Right
+        </footer>
+    </div>
+
+
+  </div>
   );
 }
 
