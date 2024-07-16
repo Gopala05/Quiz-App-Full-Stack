@@ -1,36 +1,91 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).(Quiz app using Django framework.)
+# Quiz App with Timer
+
+Welcome to the Quiz App with Timer! This project is a modern, dynamic quiz application built with a powerful tech stack to provide a seamless user experience.
+
+## Tech Stack
+
+- **Frontend**: Next.js, Tailwind CSS, DaisyUI, Aceternity UI, Ant Design
+- **Backend**: Django, Django REST Framework
+
+## Features
+
+- **Dynamic Quiz Interface**: Enjoy a responsive and interactive quiz experience.
+- **Timer Integration**: Each quiz comes with a built-in timer to enhance challenge.
+- **User Authentication**: Secure login and signup functionalities.
+- **RESTful API**: Efficient communication between the frontend and backend.
+- **Beautiful UI Components**: Leveraging DaisyUI, Aceternity UI, and Ant Design for a polished look and feel.
 
 ## Getting Started
 
-First, run the development server:
+### Prerequisites
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+Ensure you have the following installed:
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+- Node.js
+- npm or yarn
+- Python
+- Django
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+### Installation
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+1. **Clone the Repository**
+    ```bash
+    git clone https://github.com/Gopala05/Quiz-App-Full-Stack.git
+    cd Quiz-App-Full-Stack
+    ```
 
-## Learn More
+2. **Frontend Setup**
+    ```bash
+    cd frontend
+    npm install
+    # or
+    yarn install
+    ```
 
-To learn more about Next.js, take a look at the following resources:
+3. **Backend Setup**
+    ```bash
+    cd backend
+    python -m venv venv
+    source venv/bin/activate  # On Windows, use `venv\Scripts\activate`
+    pip install <Module_Name>
+    ```
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+### Running the Application
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+1. **Start the Backend Server**
+    ```bash
+    cd backend
+    python manage.py makemigrations
+    python manage.py migrate
+    python manage.py runserver
+    ```
 
-## Deploy on Vercel
+2. **Start the Frontend Server**
+    ```bash
+    cd frontend
+    npm run dev
+    # or
+    yarn dev
+    ```
 
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
+### Configuration
 
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+- **Environment Variables**: Create a `.env` file in both the frontend and backend directories with the necessary environment variables.
+
+### Deployment
+
+To deploy this application, refer to the documentation for the specific platforms you plan to use (e.g., Vercel for Next.js, Heroku for Django).
+
+## Contributing
+
+We welcome contributions! Please follow these steps:
+
+1. Fork the repository.
+2. Create a new branch (`git checkout -b feature-branch`).
+3. Commit your changes (`git commit -m 'Add new feature'`).
+4. Push to the branch (`git push origin feature-branch`).
+5. Open a Pull Request.
+
+## Contact
+
+For any inquiries, please reach out to [your-email@example.com](mailto:your-email@example.com).
